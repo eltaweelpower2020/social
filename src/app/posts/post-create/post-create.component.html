@@ -1,9 +1,17 @@
 <mat-card>
-      <mat-form-field class="example-full-width">
-        <mat-label>Create Post</mat-label>
-        <textarea matInput rows="6"  [(ngModel)]="enterdValue"></textarea>
-      </mat-form-field>
-      <button (click)="onAddPost()" mat-flat-button color="accent">Save Post</button>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <mat-label>Create Post title</mat-label>
+      <input type="text" matInput ngModel name="title" required #title="ngModel">
+      <mat-error *ngIf="title.invalid">{{"plz add title"}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Create Post body</mat-label>
+      <textarea matInput rows="6" ngModel name="content" required #content="ngModel" ></textarea>
+      <mat-error *ngIf="content.invalid">{{"plz add body content"}}</mat-error>
+    </mat-form-field>
+    <button type="submit" mat-flat-button color="accent">Save Post</button>
+  </form>
 </mat-card>
 
 
